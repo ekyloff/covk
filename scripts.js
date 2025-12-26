@@ -3,6 +3,7 @@
 
   var rowsCache = [];
   var supportsSmoothScroll = 'scrollBehavior' in document.documentElement.style;
+  var dataUrl = 'publics.json';
 
   function escapeHtml(text) {
     return String(text)
@@ -72,6 +73,7 @@
   }
 
   function prepareRows() {
+    rowsCache.length = 0;
     var table = document.getElementById('publics-table');
     if (!table) {
       return;
@@ -127,6 +129,113 @@
     };
   }
 
+  function createRow(data, isSection) {
+    var tr = document.createElement('tr');
+    if (isSection) {
+      tr.className = 'section-row';
+      var th = document.createElement('th');
+      th.colSpan = 3;
+      th.scope = 'colgroup';
+      th.textContent = data.title;
+      tr.appendChild(th);
+      return tr;
+    }
+
+    var nameCell = document.createElement('td');
+    var link = document.createElement('a');
+    link.href = data.url;
+    link.rel = 'noopener';
+    link.textContent = data.name;
+
+    if (data.checkmark) {
+      var checkmark = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      checkmark.setAttribute('width', '18');
+      checkmark.setAttribute('height', '18');
+      checkmark.setAttribute('viewBox', '0 0 18 18');
+      checkmark.setAttribute('aria-hidden', 'true');
+      var polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+      polyline.setAttribute('points', '4,10 8,14 14,6');
+      polyline.setAttribute('fill', 'none');
+      polyline.setAttribute('stroke', '#b0bec5');
+      polyline.setAttribute('stroke-width', '2.5');
+      checkmark.appendChild(polyline);
+      var span = document.createElement('span');
+      span.className = 'name-checkmark';
+      span.appendChild(checkmark);
+      link.appendChild(document.createTextNode(' '));
+      link.appendChild(span);
+    }
+
+    nameCell.appendChild(link);
+
+    var descCell = document.createElement('td');
+    descCell.textContent = data.description;
+
+    var tagsCell = document.createElement('td');
+    tagsCell.className = 'js-tags';
+    tagsCell.textContent = data.tags.join(', ');
+
+    tr.appendChild(nameCell);
+    tr.appendChild(descCell);
+    tr.appendChild(tagsCell);
+
+    return tr;
+  }
+
+  function renderTable(data) {
+    var tbody = document.getElementById('publics-tbody');
+    if (!tbody || !data || !data.sections) {
+      return;
+    }
+
+    tbody.innerHTML = '';
+
+    for (var i = 0; i < data.sections.length; i++) {
+      var section = data.sections[i];
+      tbody.appendChild(createRow({ title: section.title }, true));
+
+      if (section.items && section.items.length) {
+        for (var j = 0; j < section.items.length; j++) {
+          tbody.appendChild(createRow(section.items[j], false));
+        }
+      }
+    }
+
+    prepareRows();
+    filterByTag();
+  }
+
+  function loadJson(callback) {
+    if (window.fetch) {
+      fetch(dataUrl)
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(function (json) {
+          callback(json);
+        })
+        .catch(function () {
+          // fallback to static markup
+        });
+    } else {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', dataUrl, true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          try {
+            callback(JSON.parse(xhr.responseText));
+          } catch (e) {
+            // ignore
+          }
+        }
+      };
+      xhr.send();
+    }
+  }
+
   function setupSearch() {
     var input = document.getElementById('tag-search');
     var resetBtn = document.getElementById('reset-search-btn');
@@ -155,9 +264,10 @@
 
   function init() {
     showTagsColumn();
-    prepareRows();
     setupSearch();
     setupScrollButton();
+    loadJson(renderTable);
+    prepareRows();
     filterByTag();
   }
 
