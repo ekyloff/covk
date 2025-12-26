@@ -111,6 +111,12 @@ tbody tr:hover td {
   transition: background 0.2s ease;
 }
 
+.name-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 a {
   color: #1a5ad7;
   text-decoration: none;
@@ -139,7 +145,37 @@ a:focus-visible {
   table { font-size: 12px; min-width: 100%; }
   .info-block { font-size: 0.95em; padding: 8px 6px; }
   #tag-search-block { flex-wrap: wrap; }
-  #tag-search { width: 100%; }
+  .activity-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin: 6px auto 6px;
+  color: #4b5a6a;
+  font-size: 0.95em;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.activity-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 1px #e0e6ed;
+}
+
+.activity-dot--high { background: #4caf50; }
+.activity-dot--medium { background: #ffc107; }
+.activity-dot--low { background: #ff7043; }
+.activity-dot--dead { background: #b0bec5; }
+
+#tag-search { width: 100%; }
   .btn-reset { width: 100%; }
 }
 
