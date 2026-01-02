@@ -157,6 +157,7 @@
     if (activityClass) {
       var dot = document.createElement('span');
       dot.className = activityClass;
+      dot.setAttribute('aria-hidden', 'true');
       nameCell.appendChild(dot);
     }
 
