@@ -90,11 +90,11 @@ td {
 }
 
 th:nth-child(1),
-td:nth-child(1) { width: 34%; }
+td:nth-child(1) { width: 45%; }
 th:nth-child(2),
-td:nth-child(2) { width: 36%; }
+td:nth-child(2) { width: 32%; }
 th:nth-child(3),
-td:nth-child(3) { width: 30%; }
+td:nth-child(3) { width: 23%; }
 
 th {
   background: #e3eefd;
@@ -147,13 +147,6 @@ a:focus-visible {
   min-height: 18px;
 }
 
-.activity-dot {
-  position: absolute;
-  left: 2px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .name-checkmark {
   display: inline-block;
   vertical-align: middle;
@@ -195,6 +188,13 @@ a:focus-visible {
   border-radius: 50%;
   display: inline-block;
   box-shadow: 0 0 0 1px #e0e6ed;
+}
+
+.name-cell .activity-dot {
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .activity-dot--high { background: #4caf50; }
