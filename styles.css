@@ -66,7 +66,6 @@ h1 {
 table {
   border-collapse: collapse;
   width: 100%;
-  min-width: 720px;
   table-layout: fixed;
   border-radius: 16px;
   overflow: hidden;
@@ -136,7 +135,7 @@ a:focus-visible {
   th,
   td { padding: 6px 4px; }
   h1 { font-size: 1.2em; }
-  table { font-size: 12px; min-width: 100%; }
+  table { font-size: 12px; }
   .info-block { font-size: 0.95em; padding: 8px 6px; }
   #tag-search-block { flex-wrap: wrap; }
   #tag-search { width: 100%; }
@@ -237,6 +236,80 @@ a:focus-visible {
 .footer-link:hover,
 .footer-link:focus-visible {
   color: #72818a;
+}
+
+@media (max-width: 1024px) {
+  .table-wrapper {
+    box-shadow: none;
+    border-radius: 10px;
+    overflow: visible;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr { display: block; width: 100%; }
+
+  thead {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+  }
+
+  tbody tr {
+    margin-bottom: 12px;
+    border: 1px solid #b3c6e0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #0001;
+    background: #fff;
+  }
+
+  tbody tr:hover td {
+    background: transparent;
+  }
+
+  td {
+    border: none;
+    border-bottom: 1px solid #e3eefd;
+    position: relative;
+    padding: 10px 10px 10px 42%;
+    width: 100%;
+  }
+
+  td:last-child {
+    border-bottom: none;
+  }
+
+  td::before {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 36%;
+    padding-right: 10px;
+    white-space: normal;
+    font-weight: bold;
+    color: #2a4d7a;
+    content: attr(data-label);
+  }
+
+  .section-row {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .section-row th {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    text-align: left;
+    font-size: 1em;
+  }
 }
 
 thead th {
