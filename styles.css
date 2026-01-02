@@ -131,6 +131,12 @@ a:focus-visible {
   text-decoration: underline;
 }
 
+.name-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .name-checkmark {
   display: inline-block;
   vertical-align: middle;
@@ -145,7 +151,11 @@ a:focus-visible {
   table { font-size: 12px; min-width: 100%; }
   .info-block { font-size: 0.95em; padding: 8px 6px; }
   #tag-search-block { flex-wrap: wrap; }
-  .activity-legend {
+  #tag-search { width: 100%; }
+  .btn-reset { width: 100%; }
+}
+
+.activity-legend {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -174,10 +184,6 @@ a:focus-visible {
 .activity-dot--medium { background: #ffc107; }
 .activity-dot--low { background: #ff7043; }
 .activity-dot--dead { background: #b0bec5; }
-
-#tag-search { width: 100%; }
-  .btn-reset { width: 100%; }
-}
 
 .js-tags { display: table-cell; }
 

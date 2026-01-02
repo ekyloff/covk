@@ -142,10 +142,23 @@
     }
 
     var nameCell = document.createElement('td');
+    nameCell.className = 'name-cell';
     var link = document.createElement('a');
     link.href = data.url;
     link.rel = 'noopener';
     link.textContent = data.name;
+
+    var activityClass = '';
+    if (data.activity === 'high') activityClass = 'activity-dot activity-dot--high';
+    else if (data.activity === 'medium') activityClass = 'activity-dot activity-dot--medium';
+    else if (data.activity === 'low') activityClass = 'activity-dot activity-dot--low';
+    else if (data.activity === 'dead') activityClass = 'activity-dot activity-dot--dead';
+
+    if (activityClass) {
+      var dot = document.createElement('span');
+      dot.className = activityClass;
+      nameCell.appendChild(dot);
+    }
 
     if (data.checkmark) {
       var checkmark = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
