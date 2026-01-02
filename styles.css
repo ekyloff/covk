@@ -84,17 +84,9 @@ td {
   border: 1px solid #b3c6e0;
   padding: 8px 6px;
   text-align: left;
-  width: 33.33%;
   vertical-align: top;
   word-break: break-word;
 }
-
-th:nth-child(1),
-td:nth-child(1) { width: 45%; }
-th:nth-child(2),
-td:nth-child(2) { width: 32%; }
-th:nth-child(3),
-td:nth-child(3) { width: 23%; }
 
 th {
   background: #e3eefd;
@@ -143,8 +135,8 @@ a:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding-left: 16px;
-  min-height: 18px;
+  padding-left: 0;
+  min-height: 16px;
 }
 
 .name-checkmark {
@@ -192,7 +184,7 @@ a:focus-visible {
 
 .name-cell .activity-dot {
   position: absolute;
-  left: 2px;
+  left: -12px;
   top: 50%;
   transform: translateY(-50%);
 }
