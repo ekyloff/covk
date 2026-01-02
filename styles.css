@@ -132,9 +132,18 @@ a:focus-visible {
 }
 
 .name-cell {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  padding-left: 0;
+}
+
+.activity-dot {
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .name-checkmark {
