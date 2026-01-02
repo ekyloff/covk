@@ -167,13 +167,16 @@
     }
 
     nameCell.appendChild(link);
+    nameCell.setAttribute('data-label', 'Название паблика');
 
     var descCell = document.createElement('td');
     descCell.textContent = data.description;
+    descCell.setAttribute('data-label', 'Краткое описание');
 
     var tagsCell = document.createElement('td');
     tagsCell.className = 'js-tags';
     tagsCell.textContent = data.tags.join(', ');
+    tagsCell.setAttribute('data-label', 'Теги');
 
     tr.appendChild(nameCell);
     tr.appendChild(descCell);
