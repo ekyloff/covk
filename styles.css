@@ -89,6 +89,13 @@ td {
   word-break: break-word;
 }
 
+th:nth-child(1),
+td:nth-child(1) { width: 34%; }
+th:nth-child(2),
+td:nth-child(2) { width: 36%; }
+th:nth-child(3),
+td:nth-child(3) { width: 30%; }
+
 th {
   background: #e3eefd;
   color: #2a4d7a;
@@ -136,12 +143,13 @@ a:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding-left: 0;
+  padding-left: 16px;
+  min-height: 18px;
 }
 
 .activity-dot {
   position: absolute;
-  left: -14px;
+  left: 2px;
   top: 50%;
   transform: translateY(-50%);
 }
