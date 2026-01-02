@@ -5,7 +5,8 @@
   <title>Каталог OpenVK</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles.css">
-  <script src="scripts.js"></script>
+  <script>document.documentElement.className = document.documentElement.className.replace('no-js', '');</script>
+  <script src="scripts.js" defer></script>
 </head>
 <body>
   <div class="container">
@@ -17,128 +18,40 @@
     </div>
     <noscript>
       <div class="info-block info-block-noscript">
-        Ваш браузер не поддерживает JavaScript.<br>Поиск по тегам недоступен, используйте поиск по странице.
+        Ваш браузер не поддерживает JavaScript.<br>Поиск по тегам недоступен, используйте поиск по странице. Теги остаются в таблице.
       </div>
     </noscript>
     <div class="js-only">
       <div id="tag-search-block">
-        <input type="text" id="tag-search" placeholder="Поиск по тегу..." oninput="filterByTag()">
-        <button id="reset-search-btn" class="btn-reset">Сбросить</button>
+        <label for="tag-search" class="visually-hidden">Поиск по тегу</label>
+        <input type="text" id="tag-search" placeholder="Поиск по тегу..." autocomplete="off" inputmode="search">
+        <button id="reset-search-btn" class="btn-reset" type="button">Сбросить</button>
       </div>
-      <div class="search-instruction">Введите один или несколько тегов через запятую. Поиск работает по подстроке в каждом теге. Для сброса поиска нажмите "Сбросить".</div>
-      <div id="search-count" class="search-count">Найдено: 0</div>
-      <button id="scroll-up-btn" class="scroll-up-btn">Наверх</button>
+      <div class="search-instruction">Введите один или несколько тегов через запятую. Поиск работает по подстроке в каждом теге. Для сброса поиска нажмите «Сбросить».</div>
+      <div class="activity-legend">
+        <span class="legend-item"><span class="activity-dot activity-dot--high"></span>частый актив</span>
+        <span class="legend-item"><span class="activity-dot activity-dot--medium"></span>средний актив</span>
+        <span class="legend-item"><span class="activity-dot activity-dot--low"></span>редкий актив</span>
+        <span class="legend-item"><span class="activity-dot activity-dot--dead"></span>нулевой/мертв</span>
+      </div>
+      <div id="search-count" class="search-count" role="status" aria-live="polite">Найдено: 0</div>
+      <button id="scroll-up-btn" class="scroll-up-btn" type="button">Наверх</button>
     </div>
-    <table id="publics-table" border="1" cellpadding="5" cellspacing="0">
-      <tbody><tr class="section-row">
-        <th colspan="3">Интересное про OpenVK</th>
-      </tr>
-      <thead>
-      <tr>
-        <th>Название паблика (кликабельно)</th>
-        <th>Краткое описание</th>
-        <th class="js-tags">Теги</th>
-      </tr>
-      </thead>
-      <tr style=""><td><a href="https://ovk.to/club1">OpenVK <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>официальный новостной паблик OpenVK</td><td class="js-tags">OpenVK, обновления, администрация</td></tr>
-      <tr style=""><td><a href="https://ovk.to/vepurovk">VepurOVK <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>второй по популярности инстанс OpenVK</td><td class="js-tags" style="display: table-cell;">OpenVK, альтернатива</td></tr>
-      <tr style=""><td><a href="https://ovk.to/saber">Сейберпедия</a></td><td>местная википедия</td><td class="js-tags" style="display: table-cell;">OpenVK, википедия, факты</td></tr>
-      <tr style=""><td><a href="https://ovk.to/omate">БРАЧНОЕ АГЕНТСТВО ИМЕНИ МЫСЛИВЕЦА | БАИМ</a></td><td>здесь можно найти друзей (￣▽￣)</td><td class="js-tags" style="display: table-cell;">знакомства, общения, друзья, средний актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/facts">Несуществующие факты OpenVK</a></td><td>несуществующие факты OpenVK</td><td class="js-tags" style="display: table-cell;">OpenVK, факты, редкий актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/everydayregs">Регистрации ОВК на каждый день</a></td><td>статистика пользователей в OpenVK</td><td class="js-tags" style="display: table-cell;">OpenVK, статистика, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club1246">Ржака OpenVK <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>мэмчики про OpenVK и всё что с ним связано</td><td class="js-tags" style="display: table-cell;">OpenVK, мемы, постирония, средний актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club181">Приложение OpenVK <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>официальное приложение OpenVK</td><td class="js-tags" style="display: table-cell;">OpenVK, приложение, нулевой актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club7">Express Reborn <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>паблик с инсайдами</td><td class="js-tags" style="display: table-cell;">OpenVK, обновления, мертв</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club1152">OpenVK Leaks <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>ещё паблик с инсайдами</td><td class="js-tags" style="display: table-cell;">OpenVK, обновления, инсайды, мертв</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club141">Официальные страницы OpenVK <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>паблик про галочки</td><td class="js-tags" style="display: table-cell;">OpenVK, информация, администрация</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club4839">VKify <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>расширение для OpenVK</td><td class="js-tags" style="display: table-cell;">OpenVK, дополнение, расширение, полезно, редкий актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club1707">Статистика openvk.su</a></td><td>паблик с статистикой OpenVK</td><td class="js-tags" style="display: table-cell;">OpenVK, статистика, мертв</td></tr>
-      <tr style=""><td><a href="https://ovk.to/confessions">*VK Confessions!!!</a></td><td>(не)интересные факты про OpenVK и VK</td><td class="js-tags" style="display: table-cell;">OpenVK, факты, фишки, лайфхаки, средний актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/liver">LIVE Reborn</a></td><td>исторические сводки, факты и всякое про OpenVK</td><td class="js-tags" style="display: table-cell;">OpenVK, факты, фишки, лайфхаки, информация, частый актив</td></tr>
-      <tr class="section-row">
-        <th colspan="3">Мемы</th>
-      </tr>
-      <tr style=""><td><a href="https://ovk.to/club4964">Группа любителей выебать "Выебаться Крепкое"</a></td><td>постирония</td><td class="js-tags" style="display: table-cell;">мемы, постирония, абсурд, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/copypastainc">Копипаста, Inc</a></td><td>абстрактный но смешной юмор</td><td class="js-tags" style="display: table-cell;">мемы, анекдоты, старый юмор, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/keorph">скупка краденого фумосибирск</a></td><td>шизопаблик про фумо (?)</td><td class="js-tags" style="display: table-cell;">мемы, шизофрения, абсурд, постирония, аморал, средний актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/cdrpcool">цитаты для реальных пацанов (ЦДРП)</a></td><td>абсурдные постироничные цитаты</td><td class="js-tags" style="display: table-cell;">	мемы, постирония, абсурд, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/a_figenna">устрицы и пустота</a></td><td>дэбильные приколы</td><td class="js-tags" style="display: table-cell;">	мемы, постирония, абсурд, тикток, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/text">Тексты без контекста</a></td><td>какие-то смешные пасты</td><td class="js-tags" style="display: table-cell;">пасты, постирония, абсурд, редкий актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club5566">Аниме Мемы <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>паблик из тг с неоч смешными аниме-приколами</td><td class="js-tags" style="display: table-cell;">мемы, нормисы, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club5585">IT CRINGE | АЙТИ КРИНЖ</a></td><td>айтишные приколы, паблик из вк</td><td class="js-tags" style="display: table-cell;">мемы, нормисы, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/uk_radeno">украденные приколы</a></td><td>постирония + среднячковые мемы</td><td class="js-tags" style="display: table-cell;">мемы, шизофрения, абсурд, постирония, аморал, средний актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/gaymez_cum">Gaymez Cum</a></td><td>мемы на игровую/компьютерную тематику</td><td class="js-tags" style="display: table-cell;">мемы, нормисы, игры, тикток, IT, компы, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/salodelfia">салодельфия </a></td><td>абсурдные тикток приколы</td><td class="js-tags" style="display: table-cell;">мемы, постирония, абсурд, тикток, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club5404">&gt;&gt;&gt;TerpeLka.</a></td><td>смешной абсурдик</td><td class="js-tags" style="display: table-cell;">мемы, шизофрения, абсурд, постирония, аморал, средний актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club6829">3ch - classic 2015 memes</a></td><td>те самые тролляцкие мемы из 2015</td><td class="js-tags" style="display: table-cell;">мемы, шизофрения, абсурд, постирония, аморал, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club6341">Gay Garfield's Basement</a></td><td>рандом щитпост мемы</td><td class="js-tags" style="display: table-cell;">мемы, постирония, абсурд, коты, частый актив</td></tr>
-      <tr class="section-row">
-        <th colspan="3">Развлекательный контент</th>
-      </tr>
-      <tr style=""><td><a href="https://ovk.to/funposting">группа для веселья в интернете <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>различные приколы с закосом на запад</td><td class="js-tags" style="display: table-cell;">мемы, нормисы, аниме, арты, картинки, коты, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/ostan">ОС-Тян как смысл жизни <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>аниме-девки ОС (виндовс-тян)</td><td class="js-tags" style="display: table-cell;">аниме, IT, компы, арты, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/faerochat">Комьюнити Frutiger Aero</a></td><td>паблик про эстетику фрутигер аеро</td><td class="js-tags" style="display: table-cell;">ностальгия, frutiger aero, картинки, вайб, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/thisuser">Этот пользователь...</a></td><td>забавные баннеры на страничку</td><td class="js-tags" style="display: table-cell;">картинки, вайб, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/myzlo">E:/music/крутое_музло</a></td><td>перезаливы различных альбомов, песенок, андеграунд</td><td class="js-tags" style="display: table-cell;">музыка, андеграунд, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club5374">Фотографы в овк</a></td><td>фоточки от сообщества овк</td><td class="js-tags" style="display: table-cell;">картинки, фото, открытая стена, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club8">Анимешные чанучи.</a></td><td>аниме-девки</td><td class="js-tags" style="display: table-cell;">аниме, арты, средний актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club5">группа для тех кто еле еле просипается сутра..</a></td><td>эмммм</td><td class="js-tags" style="display: table-cell;">ностальгия, средний актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club4922">Мир старых устройств</a></td><td>истории и фоточки олдовых девайсов</td><td class="js-tags" style="display: table-cell;">ностальгия, IT, компы, телефоны, средний актив, открытая стена</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club2639">AESTO Project for OpenVK</a></td><td>олдскульная эстетика</td><td class="js-tags" style="display: table-cell;">ностальгия, IT, компы, frutiger aero, картинки, вайб, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club760">TideSoft <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>поставщик программного обеспечения</td><td class="js-tags" style="display: table-cell;">IT, компы, абсурд, постирония, редкий актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club4863">neofolk.ru</a></td><td>вайбик + приколы</td><td class="js-tags" style="display: table-cell;">мемы, абсурд, вайб, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club2603">E=mc²</a></td><td>какие-то умные посты</td><td class="js-tags" style="display: table-cell;">гуманитарии, учеба, факты, редкий актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club4765">.gif thugs out of time | GIF + sound</a></td><td>включил музон, гифку и кайфуешь</td><td class="js-tags" style="display: table-cell;">мемы, картинки, музыка, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/cookingbook">Кулинарная книга</a></td><td>вкуснейшие рецепты всего овк</td><td class="js-tags" style="display: table-cell;">картинки, еда, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/scums">scumsshittt!</a></td><td>мам скачай пинтерест у нас есть пинтерест дома:</td><td class="js-tags" style="display: table-cell;">картинки, музыка, мемы, вайб, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/aesthetic">a e s t h e t i c</a></td><td>эстетика всего. от котов до гробов</td><td class="js-tags" style="display: table-cell;">картинки, вайб, частый актив</td></tr>
-      <tr class="section-row">
-      <tr style=""><td><a href="https://ovk.to/desktopcore">Desktopcore</a></td><td>ваши, и не только ваши рабочие столы</td><td class="js-tags" style="display: table-cell;">картинки, вайб, IT, компы, телефоны, ностальгия, софт, открытая стена, средний актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club6347">!internet!</a></td><td>пасты с двача и не с двача</td><td class="js-tags" style="display: table-cell;">пасты, постирония, абсурд, шизофрения, аморал, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/ovkboom">OVKBOOM</a></td><td>перезаливы различных альбомов, песенок но уже не андеграунд</td><td class="js-tags" style="display: table-cell;">музыка, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club7044">Юродский</a></td><td>религиозные цитаты</td><td class="js-tags" style="display: table-cell;">цитаты, религия, частый актив</td></tr>
-      <tr class="section-row">
-        <th colspan="3">Новостники</th>
-      </tr>
-      <tr style=""><td><a href="https://ovk.to/stream_inside">STREAM INSIDE</a></td><td>типо про твич-стримеров и шлюх</td><td class="js-tags" style="display: table-cell;">новости, twitch, youtube, стримы, стримеры, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/it_and_kall">информационные технологии и прочий калл</a></td><td>новости написанные нейросетью... ?</td><td class="js-tags" style="display: table-cell;">новости, компы, телефоны, IT, игры, частый актив</td></tr>
-      <tr class="section-row">
-        <th colspan="3">Известные личности</th>
-      </tr>
-      <tr style=""><td><a href="https://ovk.to/club2">Daniel Myslivets <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>один из самых популярных виндоблоггеров (?)</td><td class="js-tags" style="display: table-cell;">IT, компы, youtube</td></tr>
-      <tr style=""><td><a href="https://ovk.to/compshop_ru">CompShop <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>делают смешные шортсы про компы</td><td class="js-tags" style="display: table-cell;">IT, компы, youtube, мертв</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club5438">Рифмы и Панчи <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>рифмы и сранчи реально из тг</td><td class="js-tags" style="display: table-cell;">мемы, ностальгия, мертв</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club75">veselcraft <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>влогер про мобилы и основатель OpenVK</td><td class="js-tags" style="display: table-cell;">IT, компы, телефоны, ностальгия, youtube</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club493">Группа сайта old-dos.ru <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>сайт про старый софт</td><td class="js-tags" style="display: table-cell;">IT, компы, ностальгия, софт, мертв</td></tr>
-      <tr class="section-row">
-        <th colspan="3">Фандомы</th>
-      </tr>
-      <tr style=""><td><a href="https://ovk.to/persona">мысли Тору Адачи</a></td><td>мемы по серии игр Persona</td><td class="js-tags" style="display: table-cell;">мемы, аниме, арты, средний актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/lain_experiments">Let's all love Lain</a></td><td>арты с анимешкой "Эксперименты Лейн"</td><td class="js-tags" style="display: table-cell;">аниме, арты, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/necoarcimages">Картинки с Neco-Arc</a></td><td>арты с неко-арк</td><td class="js-tags" style="display: table-cell;">аниме, арты, открыта стена, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club2116">Арты с Мику Хатсуне</a></td><td>арты с мику</td><td class="js-tags" style="display: table-cell;">аниме, арты, вокалоиды, открыта стена, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club5730">*ФанКлуб Касане Тето*</a></td><td>фанаты тето груши</td><td class="js-tags" style="display: table-cell;">аниме, арты, вокалоиды, открыта стена, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/monikafags">Объединение Моникафагов | Monika DDLC | Доки Доки Литературный Клуб | Аниме</a></td><td>интересные факты с артами моники</td><td class="js-tags" style="display: table-cell;">аниме, арты, гуманитарии, факты, ddlc, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/windowsxp">Windows XP</a></td><td>группа фанатов виндовс хрюши</td><td class="js-tags" style="display: table-cell;">IT, компы, ностальгия, софт, открыта стена, мертв</td></tr>
-      <tr style=""><td><a href="https://ovk.to/iosclub">LegacyiOS Club</a></td><td>клуб любителей старых iOS</td><td class="js-tags" style="display: table-cell;">IT, телефоны, ностальгия, софт, открыта стена, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club5841">My little brony мемы, конкурсы, пони(MLP)</a></td><td>про поней, группа ОЧЕНЬ сомнительного качества даже для постиронии</td><td class="js-tags" style="display: table-cell;">мемы, арты, ностальгия, пони, брони, ньюфаги, открыта стена, частый актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/club4603">Фанклуб Красной Плесени в Open VK</a></td><td>всякие приколюхи с красной плесенью и все что с ней связано</td><td class="js-tags" style="display: table-cell;">музыка, ностальгия, открыта стена, редкий актив</td></tr>
-      <tr style=""><td><a href="https://ovk.to/yanderesimulatorfandom">Yandere Simulator | fandom</a></td><td>фанклуб игры, которая никогда не выйдет в релиз</td><td class="js-tags" style="display: table-cell;">аниме, арты, игры, открыта стена, средний актив</td></tr>
-      <tr class="section-row">
-        <th colspan="3">Местные щитпостеры</th>
-      </tr>
-      <tr style=""><td><a href="https://ovk.to/stellessia">Stellessia</a></td><td>женщина (или нет...)</td><td class="js-tags" style="display: table-cell;">IT, компы, программирование</td></tr>
-      <tr style=""><td><a href="https://ovk.to/blogoteber">Blogoteber</a></td><td>программист типо матвей креветко</td><td class="js-tags" style="display: table-cell;">IT, компы, программирование</td></tr>
-      <tr class="section-row">
-        <th colspan="3">Проекты</th>
-      </tr>
-      <tr style=""><td><a href="https://ovk.to/hterminal">hterminal</a></td><td>hentai terminal я хз</td><td class="js-tags" style="display: table-cell;">IT, компы, программирование, софт</td></tr>
-      <tr style=""><td><a href="https://ovk.to/oldicq">KICQ - ICQ на старом протоколе</a></td><td>та самая аська</td><td class="js-tags" style="display: table-cell;">IT, компы, ностальгия, софт, мертв (приложение работает)</td></tr>
-      <tr style=""><td><a href="https://ovk.to/vk4me">VK4ME <span class="name-checkmark"><svg width="18" height="18" viewBox="0 0 18 18" style="vertical-align:0px"><polyline points="4,10 8,14 14,6" fill="none" stroke="#b0bec5" stroke-width="2.5"></polyline></svg></span></a></td><td>клиент (о)вк для устройств с поддержкой j2me</td><td class="js-tags" style="display: table-cell;">OpenVK, IT, телефоны, ностальгия, софт, мертв (приложение работает)</td></tr>
-    </tbody></table>
+    <div class="table-wrapper">
+      <table id="publics-table">
+        <thead>
+          <tr>
+            <th scope="col">Название паблика (кликабельно)</th>
+            <th scope="col">Краткое описание</th>
+            <th scope="col" class="js-tags">Теги</th>
+          </tr>
+        </thead>
+        <tbody id="publics-tbody"></tbody>
+      </table>
+    </div>
   </div>
   <div class="footer-signature">
     Создатель: <a href="https://ovk.to/id281" class="footer-link">@ekyloff</a>
   </div>
 </body>
-</html> 
+</html>
