@@ -238,7 +238,7 @@ a:focus-visible {
   color: #72818a;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1024px) {
   .table-wrapper {
     box-shadow: none;
     border-radius: 10px;
